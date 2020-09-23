@@ -1,6 +1,7 @@
 ﻿@page
 @model InternalSupport.Pages.SupportTicket.IndexModel
 
+
 @{
     ViewData["Title"] = "Index";
 }
@@ -31,6 +32,7 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.SupportTickets[0].Status)
+                
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.SupportTickets[0].Assigned)
@@ -60,10 +62,12 @@
                 @Html.DisplayFor(modelItem => item.Updated)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Status)
+                @Html.DisplayFor(modelItem => item.Status)          
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Assigned)
+            
+                
             </td>
             <td>
                 <a asp-page="./Edit"  asp-route-id="@item.id" class="btn btn-primary">Edit</a> <br /><br />

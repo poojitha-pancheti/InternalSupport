@@ -12,6 +12,12 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SupportTickets.Status)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SupportTickets.Status)
+        </dd>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.SupportTickets.id)
         </dt>
         <dd class="col-sm-10">
@@ -59,6 +65,7 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.SupportTickets.Assigned)
         </dd>
+       
     </dl>
 </div>
 <div>

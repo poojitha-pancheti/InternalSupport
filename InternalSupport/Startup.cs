@@ -29,6 +29,7 @@ namespace InternalSupport
 
             services.AddDbContext<InternalSupportContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("InternalSupportContext")));
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +52,7 @@ namespace InternalSupport
             app.UseRouting();
 
             app.UseAuthorization();
+            
 
             app.UseEndpoints(endpoints =>
             {

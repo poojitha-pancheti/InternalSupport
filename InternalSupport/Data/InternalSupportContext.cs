@@ -15,5 +15,6 @@ namespace InternalSupport.Data
         }
 
         public DbSet<InternalSupport.Models.SupportTickets> SupportTickets { get; set; }
+        public DbSet<InternalSupport.Models.TicketStatus> TicketStatus { get; set; }
     }
 }

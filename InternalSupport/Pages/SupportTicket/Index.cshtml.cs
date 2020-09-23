@@ -23,7 +23,9 @@ namespace InternalSupport.Pages.SupportTicket
 
         public async Task OnGetAsync()
         {
+            
             SupportTickets = await _context.SupportTickets.ToListAsync();
+            //TicketStatus = await _context.TicketStatus.ToListAsync();
         }
     }
 }
