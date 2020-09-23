@@ -14,9 +14,12 @@ namespace InternalSupport.Models
         public string Email { get; set; }
         public string Subject { get; set; }
         public string Description { get; set; }
-        public DateTime created { get; set; }  
+        [DisplayFormat(DataFormatString ="{0:MMm dd}")]
+        public DateTime created { get; set; }
+        [DisplayFormat(DataFormatString = "{0:MMm dd}")]
         public DateTime Updated { get; set; }
         public string Status { get; set; }
+        
         public string Assigned { get; set; }
         
     }

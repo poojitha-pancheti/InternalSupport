@@ -20,12 +20,14 @@ namespace InternalSupport.Pages.SupportTicket
         }
 
         public IList<SupportTickets> SupportTickets { get;set; }
-
+       
         public async Task OnGetAsync()
         {
+           
+             
+             SupportTickets = await _context.SupportTickets.ToListAsync();
             
-            SupportTickets = await _context.SupportTickets.ToListAsync();
-            //TicketStatus = await _context.TicketStatus.ToListAsync();
+            
         }
     }
 }

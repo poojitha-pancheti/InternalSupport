@@ -35,8 +35,9 @@ namespace InternalSupport.Pages.SupportTicket
             
             SupportTickets = await _context.SupportTickets.FirstOrDefaultAsync(m => m.id== id);
             TicketStatus = await _context.TicketStatus.ToListAsync();
-            var ticket = new SelectList(TicketStatus, "Id", "Status");
+            var ticket = new SelectList(TicketStatus, "Status", "Status");
             ViewData["StatusList"] = ticket;
+           
   
             if (SupportTickets == null)
             {
@@ -56,9 +57,8 @@ namespace InternalSupport.Pages.SupportTicket
             }
 
             SupportTickets.Updated = DateTime.Now;
-            SupportTickets.Status = Request.Form["StatusData"].ToString();
             _context.Attach(SupportTickets).State = EntityState.Modified;
-            //_context.Attach(TicketStatus).State = EntityState.Modified;
+      
 
             try
             {
