@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using InternalSupport.Data;
 using InternalSupport.Models;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace InternalSupport.Pages.SupportTicket
 {
@@ -18,16 +20,23 @@ namespace InternalSupport.Pages.SupportTicket
         {
             _context = context;
         }
+      
+        //  public IList<SupportTickets> SupportTickets { get;set; }
+        public PaginatedList<SupportTickets> SupportTickets { get; set; }
 
-        public IList<SupportTickets> SupportTickets { get;set; }
-       
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(int? PageIndex)
         {
-           
-             
-             SupportTickets = await _context.SupportTickets.ToListAsync();
-            
-            
+
+            IQueryable<SupportTickets> SupportTicketsIQ = from s in _context.SupportTickets
+                                                          select s;
+
+            int pageSize = 10;
+            SupportTickets = await PaginatedList<SupportTickets>.CreateAsync(
+                SupportTicketsIQ, PageIndex ?? 1, pageSize);
         }
+       
+
+
+
     }
 }

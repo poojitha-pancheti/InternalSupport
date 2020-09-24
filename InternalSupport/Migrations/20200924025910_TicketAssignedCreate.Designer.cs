@@ -4,14 +4,16 @@ using InternalSupport.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InternalSupport.Migrations
 {
     [DbContext(typeof(InternalSupportContext))]
-    partial class InternalSupportContextModelSnapshot : ModelSnapshot
+    [Migration("20200924025910_TicketAssignedCreate")]
+    partial class TicketAssignedCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,14 +43,11 @@ namespace InternalSupport.Migrations
                     b.Property<string>("Subject")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("Updated")
+                    b.Property<DateTime>("Updated")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("created")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("pathFile")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
 

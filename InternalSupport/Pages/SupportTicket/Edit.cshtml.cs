@@ -24,7 +24,7 @@ namespace InternalSupport.Pages.SupportTicket
         [BindProperty]
         public SupportTickets SupportTickets { get; set; }
         public List<TicketStatus> TicketStatus { get; set; }
-
+        public List<TicketAssigned> TicketAssigned { get; set; }
         public async Task<IActionResult> OnGetAsync(int? id)
         {
 
@@ -37,11 +37,18 @@ namespace InternalSupport.Pages.SupportTicket
             TicketStatus = await _context.TicketStatus.ToListAsync();
             var ticket = new SelectList(TicketStatus, "Status", "Status");
             ViewData["StatusList"] = ticket;
-           
-  
+            TicketAssigned = await _context.TicketAssigned.ToListAsync();
+            var ticketA = new SelectList(TicketAssigned, "Assigned", "Assigned");
+            ViewData["AssignedList"] = ticketA;
+
+
             if (SupportTickets == null)
             {
                 return NotFound();
+            }
+            if (SupportTickets == null)
+            {
+                return null;
             }
             
          
@@ -57,10 +64,12 @@ namespace InternalSupport.Pages.SupportTicket
             }
 
             SupportTickets.Updated = DateTime.Now;
-            _context.Attach(SupportTickets).State = EntityState.Modified;
-      
+           
+            SupportTickets.Status = Request.Form["StatusData"].ToString();
+            SupportTickets.Assigned = Request.Form["AssignedData"].ToString();
 
-            try
+            _context.Attach(SupportTickets).State = EntityState.Modified;
+             try
             {
                 await _context.SaveChangesAsync();
             }
@@ -75,8 +84,7 @@ namespace InternalSupport.Pages.SupportTicket
                     throw;
                 }
             }
-
-
+           
             return RedirectToPage("./Index");
         }
 
@@ -89,6 +97,11 @@ namespace InternalSupport.Pages.SupportTicket
             return _context.TicketStatus.Any(e => e.Id == id);
 
         }
+    //    private bool TicketAssignedExists(int id)
+    //    {
+    //        return _context.TicketAssigned.Any(e => e.Id == id);
+
+    //    }
 
     }
 }

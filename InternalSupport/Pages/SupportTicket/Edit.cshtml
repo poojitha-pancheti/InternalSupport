@@ -37,21 +37,32 @@
                 <input asp-for="SupportTickets.created" class="form-control" readonly />
                 <span asp-validation-for="SupportTickets.created" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label  class="control-label">Status:</label>
-                 @Html.DropDownList("StatusData",( IEnumerable < SelectListItem >) ViewData["StatusList"] )
-                
-              </div>
-             <div class="form-group">
-                <label asp-for="SupportTickets.Assigned" class="control-label"></label>
-                <span asp-validation-for="SupportTickets.Assigned" class="text-danger"></span>
-                
+            <div class="form-group">@if (Model.SupportTickets.Updated == null)
+            { @Html.Display(null)}
+            else
+            {
+               <label asp-for="SupportTickets.Updated" class="control-label"></label>
+                <input asp-for="SupportTickets.Updated" class="form-control" readonly />
+                <span asp-validation-for="SupportTickets.Updated" class="text-danger"></span>
+
+            }
             </div>
+
+            <div class="form-group">
+                <label class="control-label">Status</label><br />
+                @Html.DropDownList("StatusData", (IEnumerable<SelectListItem>)ViewData["StatusList"], new { @class = "btn btn-default dropdown-toggle" })
+
+            </div>
+            <div class="form-group">
+                <label class="control-label">Assigned</label><br />
+                @Html.DropDownList("AssignedData", (IEnumerable<SelectListItem>)ViewData["AssignedList"], new { @class = "btn btn-default dropdown-toggle" })
+            </div>
+
 
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
-            
+
         </form>
     </div>
 </div>

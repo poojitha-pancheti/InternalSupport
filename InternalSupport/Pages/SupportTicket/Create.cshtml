@@ -10,7 +10,8 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form method="post">
+        <form enctype="multipart/form-data" method="post" >
+            <input  hidden asp-for="SupportTickets.pathFile"/>
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="SupportTickets.Email" class="control-label"></label>
@@ -27,7 +28,10 @@
                 <input asp-for="SupportTickets.Description" class="form-control" style="width:800px;height:100px;" required />
                 <span asp-validation-for="SupportTickets.Description" class="text-danger"></span>
             </div>
-            
+            <div class="form-group">
+                <label asp-for="filee" class="control-label"></label>
+                <input asp-for="filee"  name="filee" class="form-control"  />
+            </div>
 
             <div class="form-group">
 
